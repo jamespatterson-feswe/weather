@@ -2,9 +2,7 @@
 
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="size-32 bg-red-500">HELLO WORLD</div>
   )
 }
 
