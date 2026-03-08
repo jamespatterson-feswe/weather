@@ -13,14 +13,14 @@ export default function Hourly({ title, data }: Props) {
   return !data ? (
     <></>
   ) : (
-    <Card title={title} childrenClassName="flex gap-6">
+    <Card title={title} childrenClassName="flex gap-6 overflow-x-scroll">
       {(data.list || []).map((hourlyForecast, index) => {
         const date = new Date(hourlyForecast?.dt_txt);
 
         return (
           <div
             key={index + '-' + hourlyForecast.dt_txt}
-            className="flex flex-col gap-2 shrink-0 items-center"
+            className="flex flex-col gap-2 shrink-0 mb-5 items-center"
           >
             <WeatherIcon src={hourlyForecast?.weather?.[0]?.icon} />
             <p>
@@ -42,13 +42,7 @@ export default function Hourly({ title, data }: Props) {
                 hour12: true,
               })}
             </p>
-            <p>{round(hourlyForecast.main.temp)}°</p>
-            <p className="text-gray-500/75">
-              {round(hourlyForecast.main.temp_min)}°
-            </p>
-            <p className="text-gray-500/75">
-              {round(hourlyForecast.main.temp_max)}°
-            </p>
+            <p>{round(hourlyForecast.main.temp)}° F</p>
           </div>
         );
       })}

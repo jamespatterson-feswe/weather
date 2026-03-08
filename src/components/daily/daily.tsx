@@ -31,9 +31,9 @@ export default function DailyForecast({ title, data }: Props) {
                 timeZone: 'UTC',
               })}
             </p>
-            <p>{round(value.temp as number)}°</p>
-            <p className="text-gray-500/75">{round(value.min as number)}°</p>
-            <p className="text-gray-500/75">{round(value.max as number)}°</p>
+            <p>{round(value.temp as number)}° F</p>
+            <p className="text-gray-500/75">{round(value.min as number)}° F</p>
+            <p className="text-gray-500/75">{round(value.max as number)}° F</p>
           </div>
         );
       })}

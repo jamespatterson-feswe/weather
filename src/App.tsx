@@ -17,7 +17,7 @@ function App() {
   });
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 m-5">
       <Card title="Weather Now">
         {JSON.stringify(weatherResponse?.data?.weather)}
       </Card>
