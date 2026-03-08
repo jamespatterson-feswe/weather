@@ -1,1 +1,2 @@
-export { default as Daily } from './daily';
+export { default as DailyForecast } from './daily';
+export * from './daily.interface';

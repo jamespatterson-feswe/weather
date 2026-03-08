@@ -1,8 +1,6 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { Card, DailyForecast, Hourly } from './components/index';
 import { getForecast, getWeather, latLong } from './service/index';
-import { Card } from './components/index';
-import DailyForecast from './components/daily/daily';
-import Hourly from './components/hourly/hourly';
 
 function App() {
   const weatherResponse = useQuery({

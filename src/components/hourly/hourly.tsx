@@ -1,15 +1,8 @@
-import type { ReactNode } from 'react';
 import { Card } from '../card';
-import { round, type ForecastResponse } from '../../service';
-import { WeatherIcon } from '../index';
+import { round } from '../../service';
+import { WeatherIcon, type HourlyProps } from '../index';
 
-type Props = {
-  children?: ReactNode;
-  title: string;
-  data: ForecastResponse;
-};
-
-export default function Hourly({ title, data }: Props) {
+export default function Hourly({ title, data }: HourlyProps) {
   return !data ? (
     <></>
   ) : (

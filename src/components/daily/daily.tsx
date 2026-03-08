@@ -1,15 +1,9 @@
-import type { ReactNode } from 'react';
 import { Card } from '../card';
-import { getDailyForecast, round, type ForecastResponse } from '../../service';
+import { getDailyForecast, round } from '../../service';
 import { WeatherIcon } from '../index';
+import type { DailyProps } from './daily.interface';
 
-type Props = {
-  children?: ReactNode;
-  title: string;
-  data: ForecastResponse;
-};
-
-export default function DailyForecast({ title, data }: Props) {
+export default function DailyForecast({ title, data }: DailyProps) {
   const dailyForecast = getDailyForecast(data);
 
   return !data ? (
