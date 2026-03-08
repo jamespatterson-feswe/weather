@@ -1,13 +1,13 @@
 // import reactLogo from './assets/react.svg'
 
 import { useQuery } from '@tanstack/react-query';
-import { getWeather } from './service/index';
+import { getWeather, latLong } from './service/index';
 import { Card, Forecast } from './components/index';
 
 function App() {
   const weatherResponse = useQuery({
     queryKey: ['weather'],
-    queryFn: () => getWeather({ lat: 50, long: 50 }),
+    queryFn: () => getWeather({ lat: latLong.lat, long: latLong.long }),
     staleTime: 1000 * 60 * 15,
   });
 
