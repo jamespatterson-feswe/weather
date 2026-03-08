@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Card } from '../card';
-import { getIconUrl, round, type ForecastResponse } from '../../service';
+import { round, type ForecastResponse } from '../../service';
+import { WeatherIcon } from '../index';
 
 type Props = {
   children?: ReactNode;
@@ -12,23 +13,23 @@ export default function Hourly({ title, data }: Props) {
   return !data ? (
     <></>
   ) : (
-    <Card title={title} childrenClassName="flex flex-col gap-4">
+    <Card title={title} childrenClassName="flex gap-6">
       {(data.list || []).map((hourlyForecast, index) => {
         const date = new Date(hourlyForecast?.dt_txt);
 
         return (
           <div
             key={index + '-' + hourlyForecast.dt_txt}
-            className="flex justify-between"
+            className="flex flex-col gap-2 shrink-0 items-center"
           >
-            <img
-              className="size-8"
-              src={getIconUrl(hourlyForecast?.weather?.[0]?.icon)}
-              alt="Forecast icon"
-            />
+            <WeatherIcon src={hourlyForecast?.weather?.[0]?.icon} />
             <p>
               {date.toLocaleDateString('en-US', {
-                weekday: 'short',
+                weekday: 'long',
+              })}
+            </p>
+            <p>
+              {date.toLocaleDateString('en-US', {
                 month: 'long',
                 day: 'numeric',
                 year: 'numeric',

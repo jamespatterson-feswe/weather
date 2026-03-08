@@ -1,5 +1,3 @@
-// import reactLogo from './assets/react.svg'
-
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { getForecast, getWeather, latLong } from './service/index';
 import { Card } from './components/index';
@@ -23,9 +21,9 @@ function App() {
       <Card title="Weather Now">
         {JSON.stringify(weatherResponse?.data?.weather)}
       </Card>
-      {/* <Card title="Wind Details">
+      <Card title="Wind Details">
         {JSON.stringify(weatherResponse?.data?.wind)}
-      </Card> */}
+      </Card>
       <DailyForecast
         title="Daily Forecast"
         data={forecastResponse.data}

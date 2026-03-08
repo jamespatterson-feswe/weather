@@ -1,11 +1,7 @@
 import type { ReactNode } from 'react';
 import { Card } from '../card';
-import {
-  getDailyForecast,
-  getIconUrl,
-  round,
-  type ForecastResponse,
-} from '../../service';
+import { getDailyForecast, round, type ForecastResponse } from '../../service';
+import { WeatherIcon } from '../index';
 
 type Props = {
   children?: ReactNode;
@@ -25,11 +21,7 @@ export default function DailyForecast({ title, data }: Props) {
 
         return (
           <div key={index + '-' + key} className="flex justify-between">
-            <img
-              className="size-8"
-              src={getIconUrl(value.icon || '')}
-              alt="Forecast icon"
-            />
+            <WeatherIcon src={value.icon || ''} />
             <p>
               {date.toLocaleDateString('en-US', {
                 weekday: 'short',
