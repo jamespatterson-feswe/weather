@@ -1,4 +1,4 @@
 export * from './card/index';
-export * from './forecast/index';
-export * from './temperature/index';
-export * from './weather/index';
+export * from './daily/index';
+export * from './hourly/index';
+export * from './wind/index';

@@ -1,30 +1,26 @@
 import type { ReactNode } from 'react';
 import { Card } from '../card';
-import { getForecast, getIconUrl, latLong } from '../../service';
-import { useQuery } from '@tanstack/react-query';
+import { getIconUrl, round, type ForecastResponse } from '../../service';
 
 type Props = {
   children?: ReactNode;
   title: string;
+  data: ForecastResponse;
 };
 
-const round = (date: number): number => Math.round(date);
-
-export default function Forecast({ title }: Props) {
-  const { data } = useQuery({
-    queryKey: ['forecast'],
-    queryFn: () => getForecast({ lat: latLong.lat, long: latLong.long }),
-  });
-
+export default function Hourly({ title, data }: Props) {
   return !data ? (
     <></>
   ) : (
     <Card title={title} childrenClassName="flex flex-col gap-4">
-      {(data.list || []).map((hourlyForecast) => {
+      {(data.list || []).map((hourlyForecast, index) => {
         const date = new Date(hourlyForecast?.dt_txt);
 
         return (
-          <div className="flex justify-between">
+          <div
+            key={index + '-' + hourlyForecast.dt_txt}
+            className="flex justify-between"
+          >
             <img
               className="size-8"
               src={getIconUrl(hourlyForecast?.weather?.[0]?.icon)}

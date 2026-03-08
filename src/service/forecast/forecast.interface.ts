@@ -59,3 +59,11 @@ export interface ForecastWeather {
   description: string;
   icon: string;
 }
+
+export interface DayOptions {
+  temp: number | number[];
+  min: number | undefined;
+  max: number | undefined;
+  icon?: string;
+  icons?: string[];
+}

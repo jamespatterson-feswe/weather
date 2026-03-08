@@ -1,8 +1,10 @@
 // import reactLogo from './assets/react.svg'
 
-import { useQuery } from '@tanstack/react-query';
-import { getWeather, latLong } from './service/index';
-import { Card, Forecast } from './components/index';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { getForecast, getWeather, latLong } from './service/index';
+import { Card } from './components/index';
+import DailyForecast from './components/daily/daily';
+import Hourly from './components/hourly/hourly';
 
 function App() {
   const weatherResponse = useQuery({
@@ -11,15 +13,24 @@ function App() {
     staleTime: 1000 * 60 * 15,
   });
 
+  const forecastResponse = useSuspenseQuery({
+    queryKey: ['forecast'],
+    queryFn: () => getForecast({ lat: latLong.lat, long: latLong.long }),
+  });
+
   return (
     <div className="flex flex-col gap-8">
-      <Card title="Weather description">
+      <Card title="Weather Now">
         {JSON.stringify(weatherResponse?.data?.weather)}
       </Card>
-      <Card title="Wind Details">
+      {/* <Card title="Wind Details">
         {JSON.stringify(weatherResponse?.data?.wind)}
-      </Card>
-      <Forecast title="Forecast Details"></Forecast>
+      </Card> */}
+      <DailyForecast
+        title="Daily Forecast"
+        data={forecastResponse.data}
+      ></DailyForecast>
+      <Hourly title="Hourly Forecast" data={forecastResponse.data}></Hourly>
     </div>
   );
 }
